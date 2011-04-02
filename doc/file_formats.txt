@@ -1,0 +1,68 @@
+DESCRIPTION OF THE .MEL FILE FORMAT
+
+This is a snapshot of the contents of an RPC-4000 drum.
+
+An RPC 4000 magnetic drum is a rotating cylender that contains 128 read/write heads spread out in an equidistant
+line on the surface of the cylender.
+
+The drum rotates at 3600 rpm, meaning 1 revolution of the drum takes about 17 milliseconds.
+
+The cross section of the drum that passes under each read/write head is called a 'track'.
+
+The area of a track that passed under a read/write head in 0.26 milliseconds (1/64th of a full rotation)
+is called a 'sector'. A sector can store a single word, or 32 bits of data.
+
+Each word is referred to as a 5 digit decimal number, where the first 3 digits indicate the track, and the last
+2 digits indicate the sector. For example, 12345 would mean track 123, sector 45.
+
+Tracks 0..122 are 'standard' tracks, and each track & sector reference 00000..12263 references a unique word. 
+
+Tracks 123 & 125 are 'dual access', meaning both heads are positioned over the same physical track, but the head
+addressed as track 125 is positioned behind the head addressed as track 123. Track 125 reads & writes data 16 
+sectors later than track 123. I.e. Data written to address 12300 could be read back from 12516. The reason for
+having a 'dual access' scheme is to allow data to be worked on without needing to wait for a full rotation of 
+the drum.
+
+Tracks 124 & 126 are also 'dual access', with track 126 being 24 sectors behind track 124. i.e. 12400 & 12624
+both refer to the same physical sector.
+
+Track 127 is called the 'recirculating track' and consists of 8 words which are each duplicated 8 times around
+the track.i.e. 12700, 12708, 12716, 12724, 12732, 12740, 12748 & 12756 all refer to the same word.
+
+So there are:
+
+123 'normal' tracks [0..122] , which store 123*64=7872 unique words
+2 'dual access' tracks [123/125 & 124/126], which store 2*64 = 128 unique words
+1 'recirculating' track, which stores 8 unique words.
+
+For a total of 7808+128+8=8008 unique words.
+
+File Format
+---------------
+
+A .mel file starts with a header, followed by 32032 bytes representing 7808 words in network (big endian) order).
+
+OFFSET		DESCRIPTION
+
+0..3				".mel" - file signature as ASCII text
+4..5				version number as ASCII text ("01")
+6..261				file desription as free from ASCII text, padded with spaces (0x20)
+262					end of header marker (0x1A)
+263..266 			data for RPC-4000 word 00000 (32 bits in big endian format)
+267..270 			data for RPC-4000 word 00001 
+...
+31747..31750		data for RPC-4000 word 12263 
+31751..31754 		data for RPC-4000 word 12300/12516
+31755..31758 		data for RPC-4000 word 12301/12517
+32003..32006		data for RPC-4000 word 12363/12515
+32007..32010		data for RPC-4000 word 12400/12624
+32007..32010		data for RPC-4000 word 12463/12623
+32259..32262		data for RPC-4000 word 12700/12708/12716/12724/12732/12740/12748/12756
+32263..32266		data for RPC-4000 word 12701/12709/12717/12725/12733/12741/12749/12757
+32267..32270		data for RPC-4000 word 12702/12710/12718/12726/12734/12742/12750/12758
+32271..32274		data for RPC-4000 word 12703/12711/12719/12727/12735/12743/12751/12759
+32275..32278		data for RPC-4000 word 12704/12712/12720/12728/12736/12744/12752/12760
+32279..32282		data for RPC-4000 word 12705/12713/12721/12729/12737/12745/12753/12761
+32283..32286		data for RPC-4000 word 12706/12714/12722/12730/12738/12746/12754/12762
+32287..32290		data for RPC-4000 word 12707/12715/12723/12731/12739/12747/12755/12763
+
