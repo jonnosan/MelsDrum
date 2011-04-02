@@ -1,10 +1,11 @@
+
 instruction word format:
 bits 00..04 : opcode
 bits 05..17 : DATA or DATA ADDRESS (depends on opcode)
 bits 18..30 : next address
 bit 31		: index tag
-
 NB - bit 0 is most significant (sign bit)
+
 
 RPC-4000 OPCODES
 
