@@ -1,0 +1,43 @@
+instruction word format:
+bits 00..04 : opcode
+bits 05..17 : DATA or DATA ADDRESS (depends on opcode)
+bits 18..30 : next address
+bit 31		: index tag
+
+NB - bit 0 is most significant (sign bit)
+
+RPC-4000 OPCODES
+
+HLT,00, halt
+SNS,00, sense, read switches from console specified by D track, set branch control flag is switch depressed)
+CXE,01, compare index equal, set branch control flag if index register == data value)
+RAU,02, reset and add to upper, contents of memory location specified by D loaded into UPPER accumulator
+RAL,03, reset and add to lower, contents of memory location specified by D loaded into LOWER accumulator
+SAU,04, store address from upper, store 'address' bits from UPPER accumulator into memory location specified by D
+MST,05, masked store, stores selected bits from LOWER accumulator into memory location specicifed by D, as masked by UPPER accumulator
+LDC,06, load count, load bits 18-24 of memory location specified by D into bits 18-24 of index register
+LDX,07, load index, load bits 5-17 of index register with D value
+INP,08, input, read data (from keyboard/paper tape) into accumulator
+EXC,09, exchange, swap data between registers (D value specifies which are source & dest registers)
+DVU,10, divide by upper, contents of UPPER accumulator are divided by memory location specified by D
+DIV,11, divide, contents of full (UPPER/LOWER) accumulator divided by memory location specified by D
+SRL,12, shift right or left, shift full (UPPER/LOWER) accumulator left or right (D specifies direction and how many bits)
+SLC,13, shift left and count, shift full (UPPER/LOWER) accumulator left until bit 1 contains first significant magnitude bit
+MPY,14, multiply, contents of UPPER accumulator are modified by memory location specified by D
+MPT,15, multiply by ten, multiply UPPER or LOWER accumulator by 10 (D value specifies whether UPPER or LOWER)
+PRD,16, print from address, print character in D to selected output device (D<=63) OR select output device (D>>64)
+PRU,17, print from upper, print character in UPPER accumulator to selected output device
+EXT,18, extract, set UPPER acc. to logical AND of UPPER acc. with address specified by D
+MML,19, masked merge lower, set address specified by D by combining current contents with UPPER accumulator for bits specified by LOWER acc.
+CME,20, compare memory equal, compare UPPER accumulator with address specified by D ( LOWER accumulator specifies which bits to compare). Branch control flag set if values are equal
+CMG,21, compare memory greater, compare UPPER accumulator with address specified by D ( LOWER accumulator specifies which bits to compare). Branch control flag set if memory value >= accumulator value
+TMI,22, transfer on minus, if UPPER accumulator is negative (bit 0 is set), control is transferred to the address specified by D
+TBC,23, transfer on branch control, if branch control flag is set, go to address D
+STU,24, store upper, save UPPER accumulator to address specified by D
+STL,25, store lower, save LOWER accumulator to address specified by D
+CLU,26, clear upper, store contents of UPPER accumulator to address specified by D, set UPPER acc. to 0
+CLL,27, clear lower, store contents of LOWER accumulator to address specified by D, set LOWER acc. to 0
+ADU,28, add to upper, add contents of address specified by D to UPPER accumulator
+ADL,29, add to lower, add contents of address specified by D to LOWER accumulator
+SBU,30, subtract from upper, subtract contents of address specified by D from UPPER accumulator
+SBL,31, subtract from lower, subtract contents of address specified by D from LOWER accumulator

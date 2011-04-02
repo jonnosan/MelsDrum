@@ -1,0 +1,72 @@
+#
+#	this table is taken from Appendix B of the RPC-4000 Reference Manual 1963 
+#	http://bitsavers.org/pdf/royalPrecision/RPC-4000/RPC-4000_Reference_Manual_1963.pdf
+#
+
+# RPC-4000 CODE, DEFINITION, UNICODE EQUIVALENT
+
+00	, tape feed			,	U+0000
+01	, carriage return	,	U+000D
+02	, tab				,	U+0009
+03	, backspace			,	U+0008
+04	,    				,	
+05	, upper case		,	
+06	, lower case		,	
+07	, line feed			,	U+000A
+08	, stop code			,	U+0004
+09	,   				,	
+10	, 					,	
+11	, end of block		,	U+0017
+12	, 		,	
+13	, photo reader EOM	,	U+0019
+14	, 		,	
+15	, 		,	
+16	, 0 / )	,	U+0030 / U+0029
+17	, 1 / °	,	U+0031 / U+00B0
+18	, 2 / "	,	U+0032 / U+0022
+19	, 3 / #	,	U+0033 / U+0023
+20	, 4 / Σ	,	U+0034 / U+03A3
+21	, 5 / Δ	,	U+0035 / U+0394
+22	, 6 / @	,	U+0036 / U+0040
+23	, 7 / &	,	U+0037 / U+0026
+24	, 8 / '	,	U+0038 / U+0027
+25	, 9 / (	,	U+0039 / U+0028
+26	, a / A, U+0061 / U+0041	
+27	, b / B, U+0062 / U+0042	
+28	, c / C, U+0063 / U+0043	
+29	, d / D, U+0064 / U+0044	
+30	, e / E, U+0065 / U+0045	
+31	, f / F, U+0066 / U+0046	
+32	, g / G, U+0067 / U+0047	
+33	, h / H, U+0068 / U+0048	
+34	, i / I, U+0069 / U+0049	
+35	, j / J, U+006a / U+004a	
+36	, k / K, U+006b / U+004b	
+37	, l / L, U+006c / U+004c	
+38	, m / M, U+006d / U+004d	
+39	, n / N, U+006e / U+004e	
+40	, o / O, U+006f / U+004f	
+41	, p / P, U+0070 / U+0050	
+42	, q / Q, U+0071 / U+0051	
+43	, r / R, U+0072 / U+0052	
+44	, s / S, U+0073 / U+0053	
+45	, t / T, U+0074 / U+0054	
+46	, u / U, U+0075 / U+0055	
+47	, v / V, U+0076 / U+0056	
+48	, w / W, U+0077 / U+0057	
+49	, x / X, U+0078 / U+0058	
+50	, y / Y, U+0079 / U+0059	
+51	, z / Z, U+007a / U+005a	
+52	, , / $, U+002C / U+0024 	
+53	, = / :, U+003D / U+003A
+54	,   / ;, U+003B
+55	,   / %, U+0025
+56	, nil ,	
+57	, nil ,	
+58	, — / ?, U+2014 / U+003F
+59	, - / _, U+002D / U+005F
+60	, . , 	 U+002E
+61	, space, U+0020	
+62	, /	,	U+002F
+63	, code delete	,	U+007F
+
