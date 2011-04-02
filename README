@@ -1,2 +1,14 @@
 Mel's Drum
-_________
+_____________________
+
+The RPC-4000 was built circa 1960. The CPU was built out of valves & transistors, and used a 32 bit word.
+RAM and registers was stored on magnetic drum that rotated constantly. This computer is the machine referred
+to in the "Story of Mel", a 1980s recollection of one of the pioneer "Real Programmers", Mel Kaye.
+
+
+References
+_____________________
+
+http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/RPC-4000_Programming_Manual.pdf
+http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/programWriteups/W1-01.0_Blackjack_Game.pdf
+
